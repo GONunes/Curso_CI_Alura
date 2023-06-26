@@ -2,9 +2,9 @@ name: Go
 
 on:
   push:
-    branches: [ Aula_1 ]
+    branches: [ "*" ]
   pull_request:
-    branches: [ Aula_1 ]
+    branches: [ "*" ]
 
 jobs:
 
@@ -36,7 +36,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ['ubuntu-latest', 'ubuntu-18.04']
+        os: ['ubuntu-latest', 'ubuntu-20.04']
     steps:
     - uses: actions/checkout@v3
     - name: Build
