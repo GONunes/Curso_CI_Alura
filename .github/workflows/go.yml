@@ -61,7 +61,7 @@ jobs:
             docker build . -t $DOCKER_USER/go-app:latest
             docker push $DOCKER_USER/go-app:latest
           
-        - name: Config Container on VM
-          run: |
-            ssh aws-cloud "sudo docker pull $DOCKER_USER/go-app:latest"
-            ssh aws-cloud "sudo docker run -d --name go-app -p 8080:8080 --restart unless-stopped $DOCKER_USER/go-app:latest"
+        #- name: Config Container on VM
+          #run: |
+            #ssh aws-cloud "sudo docker pull $DOCKER_USER/go-app:latest"
+            #ssh aws-cloud "sudo docker run -d --name go-app -p 8080:8080 --restart unless-stopped $DOCKER_USER/go-app:latest"
