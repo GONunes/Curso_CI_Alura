@@ -60,7 +60,7 @@ jobs:
             DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           run: |
             docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-            docker build . -t $DOCKER_USER/go-app:latest
+            docker build ./Dockerfile -t $DOCKER_USER/go-app:latest
             docker push $DOCKER_USER/go-app:latest
           
         - name: Config Container on VM
