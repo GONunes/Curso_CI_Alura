@@ -51,25 +51,6 @@ jobs:
       run: go build -v main.go
       
       
-  deploy:
+  docker:
       needs: build
-      runs-on: ${{ matrix.os }}
-      strategy:
-        matrix:
-          os: ['ubuntu-latest', 'ubuntu-20.04']
-      
-      steps:
-        
-        - name: Deploy Docker
-          env:
-            DOCKER_USER: ${{ secrets.DOCKER_USER }}
-            DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          run: |
-            docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-            docker build /Curso_CI_Alura -t $DOCKER_USER/go-app:latest
-            docker push $DOCKER_USER/go-app:latest
-          
-        #- name: Config Container on VM
-          #run: |
-            #ssh aws-cloud "sudo docker pull $DOCKER_USER/go-app:latest"
-            #ssh aws-cloud "sudo docker run -d --name go-app -p 8080:8080 --restart unless-stopped $DOCKER_USER/go-app:latest"
+      uses: ./.github/workflows/Docker.yml
